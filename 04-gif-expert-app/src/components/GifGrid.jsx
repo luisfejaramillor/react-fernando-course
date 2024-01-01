@@ -18,7 +18,6 @@ export const GifGrid = ({ category }) => {
   );
 };
 
-
 GifGrid.propTypes = {
   category: PropTypes.string.isRequired,
 };
