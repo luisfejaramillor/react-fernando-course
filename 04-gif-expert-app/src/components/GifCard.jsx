@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 export const GifCard = ({title, img}) => {
   return (
     <div className="card" >
-        <img src={img} alt="" />
-        <p>{title} </p>
+        <img src={img} alt={title} />
+        <p>{title}</p>
     </div>
   )
 }
