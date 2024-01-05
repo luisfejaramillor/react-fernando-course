@@ -1,7 +1,7 @@
-import { CounterWithCustomHook } from "./01-useState/CounterWithCustomHook"
+import { MultipleCustomHooks } from "./03-examples/MultipleCustomHooks"
 
 export const HooksApp = () => {
 	return (
-		<CounterWithCustomHook/>
+		<MultipleCustomHooks />
 	)
 }
