@@ -1,22 +1,33 @@
-import { useFetch } from "../hooks/useFetch"
+import { useCounter, useFetch } from "../hooks"
+import { LoadingQuote, Quote, ErrorComponent } from "../03-examples"
 
 export const MultipleCustomHooks = () => {
-    const url = 'https://api.quotable.io/qotes/random'
-    const {fetchState, handleFetchApi} = useFetch(url)
+    const  {counter, increment, decrement, reset} = useCounter(1)
+    const url = `https://api.quotable.io/quotes?page=1&limit=${counter}`
+    const {fetchState} = useFetch(url)
+
     const {data, isLoading, hasError} = fetchState
-    console.log(hasError)
+    const {results} = !!data && data
+
     return (
     <>
         <h1>Breaking bad quotes</h1>
         <hr />
         {
-            isLoading && <h3>Loading...</h3>
+            isLoading && <LoadingQuote/>
         }
         {
-            hasError && <h3>Falló</h3>
+            hasError && <ErrorComponent/>
         }
-        <p> {data && data} </p>
-        <button onClick={handleFetchApi} >Get quote</button>
+        {
+            results?.map( ({author, content,_id}) => (
+                <Quote key={_id} quote={content} author={author} />
+            ))
+        }
+
+        <button disabled={isLoading} onClick={increment} >Get quote</button>
+        <button disabled={isLoading} onClick={decrement} >Reduce list</button>
+        <button disabled={isLoading} onClick={reset} >Reset list</button> 
     </>
   )
 }
