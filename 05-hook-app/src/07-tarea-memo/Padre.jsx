@@ -30,7 +30,6 @@ export const Padre = () => {
                     />
                 ))
             }
-            {/* <Hijo /> */}
         </div>
     )
 }
