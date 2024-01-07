@@ -1,7 +1,7 @@
-import { MultipleCustomHooks } from "./03-examples/MultipleCustomHooks"
+import { Padre } from "./07-tarea-memo/Padre"
 
 export const HooksApp = () => {
 	return (
-		<MultipleCustomHooks />
+		<Padre />
 	)
 }

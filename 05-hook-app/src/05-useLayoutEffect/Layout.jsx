@@ -1,13 +1,12 @@
 import { useCounter, useFetch } from "../hooks"
 import { LoadingQuote, Quote, ErrorComponent } from "../03-examples"
 
-export const MultipleCustomHooks = () => {
+export const Layout = () => {
     const  {counter, increment, decrement, reset} = useCounter(1)
     const url = `https://api.quotable.io/quotes?page=1&limit=${counter}`
     const {fetchState} = useFetch(url)
-
     const {data, isLoading, hasError} = fetchState
-    const {results} = !!data && data
+    const results = data?.results ?? []
 
     return (
     <>

@@ -9,22 +9,16 @@ export const useFetch = (url) => {
 
     const handleFetchApi = async ()=> {
 
-        setFetchState({
-            ...fetchState,
+        setFetchState(prevState => ({
+            ...prevState,
             isLoading: true,
-        })
+        }))
 
         try {
 
             const result = await fetch(url)
 
             if (!result.ok) {
-                console.log('halllo')
-                setFetchState({
-                    ...fetchState,
-                    isLoading: false,
-                    hasError: true,
-                })
                 throw new Error(`Failed to fetch: ${result.status}`);
             }
 
@@ -36,11 +30,11 @@ export const useFetch = (url) => {
             })
             
         } catch (error) {
-            setFetchState({
-                ...fetchState,
-                hasError: true,
+            setFetchState(prevState => ({
+                ...prevState,
+                hasError: error.message,
                 isLoading: false
-            })
+            }))
         }
     }
 
