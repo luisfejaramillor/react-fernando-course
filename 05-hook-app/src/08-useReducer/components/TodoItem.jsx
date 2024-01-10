@@ -10,7 +10,7 @@ export const TodoItem = ({...todo}) => {
     >
       <span 
         // onDoubleClick={()=> handleUpdateStatusTodo({id, done, description})}
-        className= {`align-self-center pe-auto ${done ? 'text-decoration-line-through' : ''}`} 
+        className= {`align-self-center ${done ? 'text-decoration-line-through' : ''}`} 
         >
           {description} 
       </span>
