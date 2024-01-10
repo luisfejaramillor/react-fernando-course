@@ -26,6 +26,14 @@ export const TodoApp = () => {
         dispatch(action)
     }
 
+    const handleUpdateStatusTodo = (todo) => {
+        const action = {
+            type: 'update status',
+            payload: todo
+        }
+        dispatch(action)
+    }
+
 
     return (
     <>
@@ -36,7 +44,7 @@ export const TodoApp = () => {
         }
         <div className="row">
             <div className="col-7">
-                <TodoList todos={todos} handleRemoveTodo={handleRemoveTodo} />
+                <TodoList todos={todos} handleRemoveTodo={handleRemoveTodo} handleUpdateStatusTodo={handleUpdateStatusTodo}/>
             </div>
             <div className="col-5">
                 <h4>Add TODO</h4>
