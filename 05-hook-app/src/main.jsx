@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client'
 import './styles/index.css'
-import { HooksApp } from './HooksApp'
+import { MainApp } from './09-useContext/MainApp'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-	<HooksApp/>
+	<MainApp/>
 )
