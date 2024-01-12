@@ -3,8 +3,7 @@ import { UserContext } from "../context/UserContext"
 
 export const LoginPage = () => {
   const {user, handleSetUser} = useContext(UserContext)
-  console.log(user)
-  console.log(handleSetUser)
+
   return (
     <>
       <h1>Login page</h1>
