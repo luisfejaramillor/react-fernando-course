@@ -5,10 +5,10 @@ export const MultipleCustomHooks = () => {
     const  {counter, increment, decrement, reset} = useCounter(1)
     const url = `https://api.quotable.io/quotes?page=1&limit=${counter}`
     const {fetchState} = useFetch(url)
+    console.log(fetchState)
 
     const {data, isLoading, hasError} = fetchState
     const {results} = !!data && data
-
     return (
     <>
         <h1>Breaking bad quotes</h1>

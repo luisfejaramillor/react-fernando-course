@@ -5,9 +5,10 @@ import {
   } from "react-router-dom";
 // import { MainApp } from './09-useContext/MainApp';
 import { TodoApp } from './08-useReducer/TodoApp';
+import { MultipleCustomHooks } from './03-examples';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<BrowserRouter>
-		<TodoApp/>
+		<MultipleCustomHooks/>
 	</BrowserRouter>
 )

@@ -2,9 +2,7 @@ import PropTypes from 'prop-types'
 import { useLayoutEffect, useRef, useState } from 'react'
 
 export const Quote = ({_id='', quote='', author=''}) => {
-
   const [boxSize, setBoxSize] = useState({width: 0, height: 0})
-  console.log(boxSize)
   const pRef = useRef()
   useLayoutEffect(() => {
     const {height, width } = pRef.current.getBoundingClientRect()
