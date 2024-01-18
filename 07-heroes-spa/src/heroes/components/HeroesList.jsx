@@ -1,19 +1,18 @@
 import { getHeroesByPublisher } from "../helpers"
 import PropTypes from 'prop-types'
+import { HeroCard } from "./HeroCard"
 
 export const HeroesList = ({publisher}) => {
     const heroes = getHeroesByPublisher(publisher)
 
     return (
-        <>
-            <ul>
-                {
-                    heroes?.map( ({id, alter_ego, superhero}) => (
-                    <li key={id} > {superhero} </li>
-                    ))
-                }
-            </ul>
-        </>
+        <div className="row rows-cols-1 row-cols-md-3 g-3" >
+            {
+                heroes?.map( (hero) => (
+                    <HeroCard key={hero.id} {...hero} />
+                ))
+            }
+        </div>
     )
 }
 
