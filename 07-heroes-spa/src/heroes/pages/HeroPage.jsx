@@ -1,14 +1,16 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { getHeroById } from "../helpers"
 import { NotFoundPage } from "./NotFoundPage"
+import { useMemo } from "react"
 
 export const HeroPage = () => {
 
   const navigate = useNavigate()
   const {heroId} = useParams()
-  const {id, superhero, alter_ego, publisher, first_appearance, characters} = getHeroById(heroId)
-  const urlImgHero = `/assets/heroes/${heroId}.jpg`
   
+  const {id, superhero, alter_ego, publisher, first_appearance, characters} = useMemo( ()=> getHeroById(heroId),[heroId]) 
+  const urlImgHero = `/assets/heroes/${heroId}.jpg`
+
   const handleNavigateBack = () => {
     navigate(`/${publisher == 'Marvel Comics' ? 'marvel' : 'dc'}`)
   }
