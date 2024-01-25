@@ -9,8 +9,8 @@ export const SearchPage = () => {
   const {formState, handleInputChange} = useForm()
   const handleSubmit = (e)=> {
     e.preventDefault()
-    const result = getHeroBySearchName(formState.searchText)
-    setHeroSearch(result)
+    const heroId = getHeroBySearchName(formState.searchText)
+    setHeroSearch(heroId)
   }
 
   
