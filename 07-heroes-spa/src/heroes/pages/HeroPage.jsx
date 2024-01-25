@@ -3,26 +3,26 @@ import { getHeroById } from "../helpers"
 import { NotFoundPage } from "./NotFoundPage"
 import { useMemo } from "react"
 
-export const HeroPage = () => {
+export const HeroPage = ({heroName}) => {
 
   const navigate = useNavigate()
   const {heroId} = useParams()
   
-  const {id, superhero, alter_ego, publisher, first_appearance, characters} = useMemo( ()=> getHeroById(heroId),[heroId]) 
-  const urlImgHero = `/assets/heroes/${heroId}.jpg`
+  const {id, superhero, alter_ego, publisher, first_appearance, characters} = useMemo( ()=> getHeroById(heroId || heroName),[heroId, heroName]) 
+  const urlImgHero = `/assets/heroes/${heroId || heroName}.jpg`
 
   const handleNavigateBack = () => {
     navigate(`/${publisher == 'Marvel Comics' ? 'marvel' : 'dc'}`)
   }
 
   if(!id){
-    return <NotFoundPage id={heroId} />
+    return <NotFoundPage id={heroId || heroName} />
   }
 
   return (
     <div className="row mt-5" >
       <div className="col-4">
-        <img src={urlImgHero}  alt={superhero} className="img-thumbnail"/>
+        <img src={urlImgHero}  alt={superhero} className="img-thumbnail animate__animated animate__fadeInLeft"/>
 
       </div>
       <div className="col-8">
