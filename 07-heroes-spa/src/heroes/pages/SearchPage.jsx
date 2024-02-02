@@ -1,18 +1,22 @@
-// import { HeroPage } from "./HeroPage"
-import { useState } from "react"
 import { useForm } from "../../../../06-my-custom-hooks/useForm/useForm"
 import { HeroPage } from "./HeroPage"
 import { getHeroBySearchName } from "../helpers"
+import { useLocation, useNavigate } from "react-router-dom"
+import queryString from 'query-string'
+
 
 export const SearchPage = () => {
-  const [heroSearch, setHeroSearch] = useState()
-  const {formState, handleInputChange} = useForm()
+  const {search} = useLocation()
+  const navigate = useNavigate()
+
+  const {q = ''} =  queryString.parse(search)
+  const heroesName = getHeroBySearchName(q)
+  const {formState, handleInputChange} = useForm({searchText: q})
+  const alertStatus = heroesName.length === 0
   const handleSubmit = (e)=> {
     e.preventDefault()
-    const heroId = getHeroBySearchName(formState.searchText)
-    setHeroSearch(heroId)
+    navigate(`?q=${formState.searchText}`)
   }
-
   
   return (
     <>
@@ -31,6 +35,7 @@ export const SearchPage = () => {
               name="searchText"
               autoComplete="off"
               onChange={handleInputChange}
+              value={formState.searchText}
             />
 
             <button type="submit" className="btn btn-outline-primary mt-1" >
@@ -42,23 +47,29 @@ export const SearchPage = () => {
         <div className="col-7">
           <h4>Results</h4>
           <hr />
-
-          <div className="alert alert-primary">
-            Search a hero
-          </div>
-
-          <div className="alert alert-danger">
-            There is not results for hero <b>xxx</b>
-          </div>
           {
-            heroSearch && (
-              <HeroPage heroName={heroSearch} />
+            alertStatus && (
+              <div className="alert alert-primary">
+
+                Search a hero
+              </div>
             )
+          }
+          {
+            (q?.length !== 0 && alertStatus) && (
+              <div className="alert alert-danger">
+
+                There is not results for hero <b>{q}</b>
+              </div>
+            )
+          }
+          {
+            heroesName.map( hero => (
+              <HeroPage key={hero.id} hero={hero.id} />
+            ))
           }
         </div>
       </div>
-
-
     </>
   )
 }

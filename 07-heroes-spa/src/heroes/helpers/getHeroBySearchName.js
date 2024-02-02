@@ -1,6 +1,7 @@
 import { heroes } from "../data/heroes"
 
-export const getHeroBySearchName = (name) => {
-    const hero = heroes.find( hero => hero.superhero.toLowerCase().includes(name.toLowerCase()))
-    return hero ? hero.id : ''
+export const getHeroBySearchName = (name = '') => {
+    name = name.toLocaleLowerCase().trim()
+    if(name.length === 0) return []
+    return heroes.filter( hero => hero.superhero.toLowerCase().trim().includes(name))
 }
